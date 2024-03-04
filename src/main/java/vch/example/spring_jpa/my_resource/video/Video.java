@@ -2,6 +2,7 @@ package vch.example.spring_jpa.my_resource.video;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +16,8 @@ import vch.example.spring_jpa.my_resource.MyResource;
 @AllArgsConstructor
 @SuperBuilder//builder of parent
 @Entity
-@DiscriminatorValue("V")
+@PrimaryKeyJoinColumn(name = "video_id")//type 2;
+//@DiscriminatorValue("V")//type 1 (only with single table)
 public class Video extends MyResource {
     private int length;
 }

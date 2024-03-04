@@ -10,8 +10,9 @@ import vch.example.spring_jpa.lecture.Lecture;
 @AllArgsConstructor
 @SuperBuilder
 @Entity(name = "RESOURCE_TBL")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "resource_type")
+@Inheritance(strategy = InheritanceType.JOINED)//type 2
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)//type 1
+//@DiscriminatorColumn(name = "resource_type")//type 1 (only with single table)
 public class MyResource {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -15,7 +15,7 @@ import vch.example.spring_jpa.my_resource.MyResource;
 @AllArgsConstructor
 @SuperBuilder//builder of parent
 @Entity
-@DiscriminatorValue("T")
+//@DiscriminatorValue("T")//type 1 (only with single table)
 public class Text extends MyResource {
     private int content;
 }

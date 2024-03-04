@@ -6,19 +6,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import vch.example.spring_jpa.author.Author;
 import vch.example.spring_jpa.author.AuthorRepository;
 import vch.example.spring_jpa.my_resource.MyResource;
 import vch.example.spring_jpa.my_resource.MyResourcesRepository;
 import vch.example.spring_jpa.my_resource.video.Video;
 import vch.example.spring_jpa.my_resource.video.VideoRepository;
-
-import java.time.LocalDateTime;
 import java.util.Random;
 
 import static vch.example.spring_jpa.Helper.l;
 
-//https://www.youtube.com/watch?v=mcl_nibV39s&list=PPSV 3:12
+//https://www.youtube.com/watch?v=mcl_nibV39s&list=PPSV 3:16
 
 @SpringBootApplication
 @RestController
@@ -45,16 +42,14 @@ public class SpringJpaApplication {
 //					.build();
 //			authorRepository.save(author);
 			Video video = Video.builder()
-					.name("test_video")
-					.url("test_url")
+					.name("video_tbl")
+					.url("video_url")
 					.length(23)
 					.build();
 			videoRepository.save(video);
 
-			MyResource r = MyResource.builder()
-					.name("test_parent_r")
-					.build();
-			myResourcesRepository.save(r);
+//			MyResource r = MyResource.builder().name("test_parent_r").build();
+//			myResourcesRepository.save(r);
 		};
 	}
 
