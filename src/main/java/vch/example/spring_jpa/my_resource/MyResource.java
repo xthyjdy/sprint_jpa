@@ -16,7 +16,7 @@ import vch.example.spring_jpa.lecture.Lecture;
 public class MyResource {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
     @Column(nullable = false, length = 50)
     private String name;
     private int size;
