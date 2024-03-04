@@ -14,6 +14,9 @@ import lombok.NoArgsConstructor;
 public class Order {
     @EmbeddedId
     private OrderId id;
+    @Embedded
+    private Address address;
+
     private String orderInfo;
     private String anotherField;
 }
