@@ -27,7 +27,7 @@ public class SpringJpaApplication {
 		l("t1");
 	}
 
-	@Bean
+//	@Bean
 	public CommandLineRunner commandLineRunner(
 			AuthorRepository authorRepository,
 			VideoRepository videoRepository,

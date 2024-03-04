@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Polymorphism;
+import org.hibernate.annotations.PolymorphismType;
 import vch.example.spring_jpa.my_resource.MyResource;
 
 @EqualsAndHashCode(callSuper = true)//only for child
@@ -18,6 +20,7 @@ import vch.example.spring_jpa.my_resource.MyResource;
 @Entity
 @PrimaryKeyJoinColumn(name = "video_id")//type 2;
 //@DiscriminatorValue("V")//type 1 (only with single table)
+//@Polymorphism(type = PolymorphismType.EXPLICIT)//explicit current class while `myResource` query
 public class Video extends MyResource {
     private int length;
 }
