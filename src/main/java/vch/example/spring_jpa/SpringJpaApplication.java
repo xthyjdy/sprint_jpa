@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import vch.example.spring_jpa.author.Author;
@@ -13,6 +14,7 @@ import vch.example.spring_jpa.my_resource.MyResource;
 import vch.example.spring_jpa.my_resource.MyResourcesRepository;
 import vch.example.spring_jpa.my_resource.video.Video;
 import vch.example.spring_jpa.my_resource.video.VideoRepository;
+import vch.example.spring_jpa.specification.AuthorSpecification;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -39,15 +41,25 @@ public class SpringJpaApplication {
 			MyResourcesRepository myResourcesRepository
 	) {
 		return args -> {
-			List<Author> ls = authorRepository.findUsersByFirstNameContaining("e");
-			authorRepository.findUsersByFirstNameContaining("%e%")
-					.forEach(Helper::l);
-			authorRepository.findUsersByFirstNameContaining("%e%")
-					.forEach(System.out::println);
+			Specification<Author> spec = Specification
+					.where(AuthorSpecification.hasAge(13))
+					.and(AuthorSpecification.firstNameLike("el"))
+					.or(AuthorSpecification.firstNameLike("ene"));
+			List<Author> ls = authorRepository.findAll(spec);
 			for (int i = 0; i <= ls.size() - 1 ; i++) {
+//				l(ls.get(i));
 				l(ls.get(i).getFirstName());
 			}
-			l("size: " + ls.size());
+			l("list size: " + ls.size());
+//			List<Author> ls = authorRepository.findUsersByFirstNameContaining("e");
+//			authorRepository.findUsersByFirstNameContaining("%e%")
+//					.forEach(Helper::l);
+//			authorRepository.findUsersByFirstNameContaining("%e%")
+//					.forEach(System.out::println);
+//			for (int i = 0; i <= ls.size() - 1 ; i++) {
+//				l(ls.get(i).getFirstName());
+//			}
+//			l("size: " + ls.size());
 //			List<Author> ls = authorRepository.getByNamedQueryContained("%e%");
 //			authorRepository.getByNamedQueryContained("%e%")
 //					.forEach(Helper::l);
