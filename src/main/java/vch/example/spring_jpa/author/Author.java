@@ -15,6 +15,20 @@ import java.util.List;
 @AllArgsConstructor
 @SuperBuilder
 @Entity(name = "AUTHOR_TBL")
+@NamedQueries({
+        @NamedQuery(
+                name = "Author.findByNamedQuery",
+                query = "SELECT a FROM AUTHOR_TBL a where a.firstName = :firstName"
+        ),
+        @NamedQuery(
+                name = "Author.updateByNamedQuery",
+                query = "UPDATE AUTHOR_TBL a SET a.firstName = :newName WHERE a.id = 1"
+        ),
+        @NamedQuery(
+                name = "findUsersByFirstNameContaining",
+                query = "SELECT a FROM AUTHOR_TBL a WHERE a.firstName LIKE :searchString"
+        )
+})
 public class Author extends BaseEntity {
     @Column(name = "f_name", length = 150)
     private String firstName;

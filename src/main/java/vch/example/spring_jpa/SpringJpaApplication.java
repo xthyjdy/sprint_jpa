@@ -20,7 +20,7 @@ import java.util.Random;
 
 import static vch.example.spring_jpa.Helper.l;
 
-//https://www.youtube.com/watch?v=mcl_nibV39s&list=PPSV 4.20
+//https://www.youtube.com/watch?v=mcl_nibV39s&list=PPSV 4.49
 
 @SpringBootApplication
 @RestController
@@ -39,8 +39,26 @@ public class SpringJpaApplication {
 			MyResourcesRepository myResourcesRepository
 	) {
 		return args -> {
+			List<Author> ls = authorRepository.findUsersByFirstNameContaining("e");
+			authorRepository.findUsersByFirstNameContaining("%e%")
+					.forEach(Helper::l);
+			authorRepository.findUsersByFirstNameContaining("%e%")
+					.forEach(System.out::println);
+			for (int i = 0; i <= ls.size() - 1 ; i++) {
+				l(ls.get(i).getFirstName());
+			}
+			l("size: " + ls.size());
+//			List<Author> ls = authorRepository.getByNamedQueryContained("%e%");
+//			authorRepository.getByNamedQueryContained("%e%")
+//					.forEach(Helper::l);
+//			l("size: " + ls.size());
+//			List<Author> authors = authorRepository.findByNamedQuery("Leon");
+//			l(authors.size());
+//			if (authors.size() > 0) {
+//				l(authors.get(0).getEmail());
+//			}
 //			authorRepository.updateAuthorAge((short) 12, (long) 1);
-			authorRepository.updateAuthorsAge((short) 13);
+//			authorRepository.updateAuthorsAge((short) 13);
 //			Faker faker = new Faker();
 //			Author author = Author.builder()
 //					.id(102L)
